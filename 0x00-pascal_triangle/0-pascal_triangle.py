@@ -1,20 +1,13 @@
 #!/usr/bin/python3
 """Pascal's Triangle"""
 
-
 def pascal_triangle(n):
-    """Returns a list of lists of integers
-      representing the Pascal's triangle of n"""
-    if n <= 0:
-        return []
+    """prints a pascals triangle"""
 
-    triangle = [[1]]
-
-    for i in range(1, n):
+    answer = [[1]]
+    for i in range(n):
         row = [1]
-        for j in range(1, i):
-            row.append(triangle[i-1][j-1] + triangle[i-1][j])
+        row.extend([answer[i][j] + answer[i][j + 1] for j in range(len(answer[i]) - 1)])
         row.append(1)
-        triangle.append(row)
-
-    return triangle
+        answer.append(row)
+    return answer
